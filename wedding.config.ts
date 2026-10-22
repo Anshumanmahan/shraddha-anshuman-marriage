@@ -134,6 +134,7 @@ export const weddingConfig = {
     parentsPrefix: "D/O",
     grandparents: [
       { prefix: "GD/O", names: "Late Brij Kishore & Vimala Dwivedi" },
+      { prefix: "GD/O", names: "Mahesh Dixit & Geeta Dixit" },
     ],
     avatar: {
       ...generatedAssets.bride,
