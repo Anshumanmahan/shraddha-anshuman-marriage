@@ -1,19 +1,24 @@
 "use client";
 
+import { Fragment } from "react";
+
 import { Divider, LotusCrest } from "@/components/motifs/Ornaments";
-import { AvatarCompanion } from "@/components/ui/AvatarGuide";
+import { AvatarGuide } from "@/components/ui/AvatarGuide";
 import { Reveal } from "@/components/ui/Reveal";
 import { drawRule, fadeUp } from "@/lib/motion";
-import { weddingConfig } from "@/wedding.config";
+import { weddingConfig, type FamilySide } from "@/wedding.config";
 
 /* ==================================================================
    FAMILY BLESSINGS
-   The names on the invitation, set with the room they deserve. This
-   list is factual — transcribed from the card and never reordered.
+   The names on the invitation, set with the room they deserve, in two
+   halves — one per family, each headed by its own avatar. Side by side
+   from tablet width up, with a thin gold rule between them; stacked on
+   a phone. The lists are factual — transcribed as supplied and never
+   reordered.
    ================================================================== */
 
 export function FamilyBlessings() {
-  const { heading, members } = weddingConfig.family;
+  const { heading, sides } = weddingConfig.family;
 
   return (
     <section
@@ -27,10 +32,7 @@ export function FamilyBlessings() {
         style={{ backgroundImage: "var(--grain)" }}
       />
 
-      {/* Sits in the section's bottom padding, clear of the names. */}
-      <AvatarCompanion who="groom" side="right" size="xs" className="bottom-2" />
-
-      <div className="relative z-[2] mx-auto flex max-w-2xl flex-col items-center text-center">
+      <div className="relative z-[2] mx-auto flex max-w-5xl flex-col items-center text-center">
         <Reveal>
           <LotusCrest className="h-9 w-14 opacity-75" />
         </Reveal>
@@ -52,28 +54,79 @@ export function FamilyBlessings() {
           R.S.V.P.
         </Reveal>
 
-        <ul className="mt-8 flex w-full flex-col items-center gap-6">
-          {members.map((member, i) => (
-            <Reveal
-              as="li"
-              key={member}
-              delay={0.2 + i * 0.06}
-              amount={0.2}
-              className="w-full"
-            >
-              <p className="display text-[clamp(1.02rem,4.4vw,1.35rem)] leading-snug text-ink">
-                {member}
-              </p>
-              {i < members.length - 1 && (
-                <span
-                  aria-hidden="true"
-                  className="mx-auto mt-6 block h-px w-10 bg-gold/35"
-                />
-              )}
-            </Reveal>
+        <div className="mt-10 grid w-full divide-y divide-gold/30 md:mt-14 md:grid-cols-2 md:divide-x md:divide-y-0">
+          {sides.map((side, i) => (
+            <FamilyHalf key={side.who} side={side} index={i} />
           ))}
-        </ul>
+        </div>
       </div>
     </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+
+function FamilyHalf({ side, index }: { side: FamilySide; index: number }) {
+  const headingId = `blessings-${side.who}`;
+
+  return (
+    <div
+      aria-labelledby={headingId}
+      role="group"
+      className="flex flex-col items-center py-12 first:pt-0 last:pb-0 md:px-8 md:py-0 lg:px-12"
+    >
+      <AvatarGuide who={side.who} tone="ink" size="sm" />
+
+      <Reveal delay={0.08} variants={fadeUp}>
+        <h3
+          id={headingId}
+          className="title mt-6 text-[0.8rem] uppercase tracking-[0.3em] text-maroon"
+        >
+          {side.label}
+        </h3>
+      </Reveal>
+
+      <ul className="mt-8 flex w-full flex-col items-center gap-5">
+        {side.members.map((member, i) => (
+          <Reveal
+            as="li"
+            key={member}
+            delay={0.14 + index * 0.08 + i * 0.05}
+            amount={0.2}
+            className="w-full"
+          >
+            <p className="display mx-auto max-w-[32ch] text-balance text-[clamp(1rem,4.2vw,1.25rem)] leading-snug text-ink">
+              <MemberName text={member} />
+            </p>
+            {i < side.members.length - 1 && (
+              <span
+                aria-hidden="true"
+                className="mx-auto mt-5 block h-px w-10 bg-gold/35"
+              />
+            )}
+          </Reveal>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/**
+ * A couple ("Mr. A & Smt B") wraps only at the ampersand, so neither
+ * person's name is ever split across two lines. A list of names — the
+ * cousins' line, with commas — wraps normally.
+ */
+function MemberName({ text }: { text: string }) {
+  if (text.includes(",")) return <>{text}</>;
+  const people = text.split(" & ");
+  return (
+    <>
+      {people.map((person, i) => (
+        <Fragment key={person}>
+          <span className="whitespace-nowrap">{person}</span>
+          {i < people.length - 1 && " & "}
+        </Fragment>
+      ))}
+    </>
   );
 }

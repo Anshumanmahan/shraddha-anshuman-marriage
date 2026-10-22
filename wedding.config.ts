@@ -39,6 +39,15 @@ export interface WeddingEvent {
   image?: string | null;
 }
 
+/** One family's half of the blessings section. */
+export interface FamilySide {
+  who: "bride" | "groom";
+  /** Heading for this half, e.g. "Shraddha's Family". */
+  label: string;
+  /** Names exactly as supplied — never reordered. */
+  members: string[];
+}
+
 export type VenueId = "agra";
 
 export interface WeddingDay {
@@ -289,17 +298,40 @@ export const weddingConfig = {
 
   family: {
     heading: "With Love and Blessings",
-    members: [
-      /* Nirmala Dixit and Uma Tiwari are named as grandparents on the
-         couple's own page, so they are not repeated here. */
-      "Air Marshal Ashutosh Dixit & Smt Archana Dixit",
-      "Dr Aditya Dixit & Dr Aditi Dixit",
-      "Mr. Mridul Tiwari & Smt Gauri Tiwari",
-      "Dr. Sadhana Tripathi & Mr. Rahul Tripathi",
-      "Akshay Dixit & Gauri Dixit",
-      "Aditi Dixit & Sqn Ldr Utkarsh Saxena",
-      "Aastha, Anagha, Anvesha, Shivangi, Sneha, Sara, Siddharth, Zaroon, Aadyant & All Dixit and Tiwari Family",
-    ],
+    /**
+     * One half per family, in the order they appear on the page —
+     * Shraddha's first, as everywhere on this invitation. `who` picks
+     * the avatar that stands at the head of each half.
+     */
+    sides: [
+      {
+        who: "bride",
+        label: "Shraddha\u2019s Family",
+        members: [
+          "Mr. Akhil Dwivedi & Smt Madhvi Dwivedi",
+          "Smt Meenakshi Bajpayee & Mr. Krishan Bajpayee",
+          "Smt Archana Pathak & Mr. Mohit Pathak",
+          "Smt Alpana Trivedi & Dr. Munesh Trivedi",
+          "Dr. Shreya Dwivedi & Mr. Lalit Chaturvedi",
+          "Anushka, Yatharth, Tanmay, Atharv, Shreyas, Om, Yashi, Saumya, Aadhya, Vedansh & All Dwivedi Family",
+        ],
+      },
+      {
+        who: "groom",
+        label: "Anshuman\u2019s Family",
+        members: [
+          /* Nirmala Dixit and Uma Tiwari are named as grandparents on the
+             couple's own page, so they are not repeated here. */
+          "Air Marshal Ashutosh Dixit & Smt Archana Dixit",
+          "Dr Aditya Dixit & Dr Aditi Dixit",
+          "Mr. Mridul Tiwari & Smt Gauri Tiwari",
+          "Dr. Sadhana Tripathi & Mr. Rahul Tripathi",
+          "Akshay Dixit & Gauri Dixit",
+          "Aditi Dixit & Sqn Ldr Utkarsh Saxena",
+          "Aastha, Anagha, Anvesha, Shivangi, Sneha, Sara, Siddharth, Zaroon, Aadyant & All Dixit and Tiwari Family",
+        ],
+      },
+    ] as FamilySide[],
   },
 
   /* ---------------------------------------------------------------- */
