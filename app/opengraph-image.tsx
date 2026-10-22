@@ -100,11 +100,11 @@ export default async function OpengraphImage() {
             color: GOLD_PALE,
           }}
         >
-          <span>{weddingConfig.groom.name}</span>
+          <span>{weddingConfig.bride.name}</span>
           <span style={{ fontSize: 60, color: GOLD, marginLeft: 26, marginRight: 26 }}>
             &amp;
           </span>
-          <span>{weddingConfig.bride.name}</span>
+          <span>{weddingConfig.groom.name}</span>
         </div>
 
         <div

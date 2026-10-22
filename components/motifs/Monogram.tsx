@@ -32,7 +32,7 @@ export function Monogram({
       <div className={cn("relative aspect-square select-none", className)}>
         <Image
           src={logo.src}
-          alt={logo.alt ?? "Anshuman and Shraddha monogram"}
+          alt={logo.alt ?? "Shraddha and Anshuman monogram"}
           width={logo.width}
           height={logo.height}
           sizes="(max-width: 640px) 40vw, 320px"
@@ -155,7 +155,7 @@ function DrawnMonogram({
         </div>
       </div>
 
-      <span className="sr-only">Anshuman and Shraddha</span>
+      <span className="sr-only">Shraddha and Anshuman</span>
     </div>
   );
 }

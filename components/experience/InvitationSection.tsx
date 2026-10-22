@@ -66,11 +66,11 @@ export function InvitationSection() {
 
           <Reveal delay={0.28} variants={fadeUp}>
             <p className="display mt-9 text-[clamp(1.9rem,8vw,3.1rem)] leading-tight text-burgundy">
-              {weddingConfig.groom.name}
+              {weddingConfig.bride.name}
               <span className="mx-2 align-middle text-[0.62em] italic text-gold sm:mx-3">
                 &amp;
               </span>
-              {weddingConfig.bride.name}
+              {weddingConfig.groom.name}
             </p>
           </Reveal>
 

@@ -201,8 +201,8 @@ export function AvatarGuide({
     >
       {who === "both" ? (
         <span className="flex items-end justify-center gap-2 sm:gap-5">
-          {one("groom", 0)}
-          {one("bride", 0.9)}
+          {one("bride", 0)}
+          {one("groom", 0.9)}
         </span>
       ) : (
         one(who, 0)

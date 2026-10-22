@@ -369,7 +369,7 @@ export function RSVPSection() {
                     </p>
 
                     <p className="display mt-8 text-[1.1rem] italic text-gold-deep">
-                      {weddingConfig.groom.name} &amp; {weddingConfig.bride.name}
+                      {weddingConfig.bride.name} &amp; {weddingConfig.groom.name}
                     </p>
                   </div>
                 </Panel>

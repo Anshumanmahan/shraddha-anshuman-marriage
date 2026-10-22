@@ -334,16 +334,16 @@ export const weddingConfig = {
    */
   logo: {
     ...generatedAssets.logo,
-    alt: "Anshuman and Shraddha monogram",
+    alt: "Shraddha and Anshuman monogram",
   } as ImageAsset | null,
-  monogram: { left: "A", right: "S" },
+  monogram: { left: "S", right: "A" },
 
 
   /* ---------------------------------------------------------------- */
   /* SITE                                                              */
   /* ---------------------------------------------------------------- */
   site: {
-    title: "Anshuman & Shraddha | Wedding Invitation",
+    title: "Shraddha & Anshuman | Wedding Invitation",
     description:
       "With the blessings of our families, we invite you to celebrate our wedding — 20 and 21 November 2026, in Agra.",
     /**

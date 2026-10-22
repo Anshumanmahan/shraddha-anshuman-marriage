@@ -45,11 +45,11 @@ export function FinalSection() {
             id="closing-heading"
             className="display mt-8 text-[clamp(2.1rem,10vw,4.4rem)] leading-[1.02] text-gold-pale"
           >
-            {weddingConfig.groom.name}
+            {weddingConfig.bride.name}
             <span className="mx-3 align-middle text-[0.55em] italic text-gold-soft">
               &amp;
             </span>
-            {weddingConfig.bride.name}
+            {weddingConfig.groom.name}
           </h2>
         </Reveal>
 

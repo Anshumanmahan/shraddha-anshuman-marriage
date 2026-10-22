@@ -68,7 +68,7 @@ export function weddingCalendarEvent(): WeddingCalendarEvent {
   const primary = getVenue(weddingConfig.days[0].venueId);
 
   return {
-    title: `${groom.name} & ${bride.name} — Wedding Celebrations`,
+    title: `${bride.name} & ${groom.name} — Wedding Celebrations`,
     start: stamp(dates.firstCelebration),
     end: dayAfter(dates.weddingDay),
     location: `${primary.name}, ${primary.address}`,

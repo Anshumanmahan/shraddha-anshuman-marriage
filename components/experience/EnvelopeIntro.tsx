@@ -330,7 +330,7 @@ export function EnvelopeIntro({
             onKeyUp={() => setPressed(false)}
             onBlur={() => setPressed(false)}
             disabled={opening}
-            aria-label="Tap to open the wedding invitation of Anshuman and Shraddha"
+            aria-label="Tap to open the wedding invitation of Shraddha and Anshuman"
             className="absolute inset-0 z-20 cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-8 focus-visible:outline-gold-soft disabled:cursor-default"
           />
         </motion.div>
@@ -509,13 +509,13 @@ function Pocket() {
         style={{ top: `calc(${POCKET_POINT}% + var(--seal) * 0.62 + 1.4rem)` }}
       >
         <span className="display text-[clamp(1.8rem,9.5vw,3.3rem)] leading-[1.06] text-gold-pale">
-          {weddingConfig.groom.name}
+          {weddingConfig.bride.name}
         </span>
         <span className="display text-[clamp(1rem,4.6vw,1.7rem)] italic leading-tight text-gold-soft">
           &amp;
         </span>
         <span className="display text-[clamp(1.8rem,9.5vw,3.3rem)] leading-[1.06] text-gold-pale">
-          {weddingConfig.bride.name}
+          {weddingConfig.groom.name}
         </span>
 
         <Divider

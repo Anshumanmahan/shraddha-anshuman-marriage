@@ -46,7 +46,7 @@ export function CoupleHero() {
             Together With Our Families
           </span>
           <h2 id="couple-heading" className="sr-only">
-            Anshuman weds Shraddha
+            Shraddha weds Anshuman
           </h2>
         </Reveal>
 
@@ -55,14 +55,14 @@ export function CoupleHero() {
           <RisingPetals className="inset-x-[36%] bottom-0 top-[18%]" />
 
           <Reveal variants={scaleIn} className="mx-auto w-full max-w-[300px]">
-            <PortraitFrame person={groom} role="groom" lean={1} />
+            <PortraitFrame person={bride} role="bride" lean={1} />
           </Reveal>
           <Reveal
             variants={scaleIn}
             delay={0.14}
             className="mx-auto w-full max-w-[300px]"
           >
-            <PortraitFrame person={bride} role="bride" lean={-1} antic={1.8} />
+            <PortraitFrame person={groom} role="groom" lean={-1} antic={1.8} />
           </Reveal>
         </div>
 
@@ -74,7 +74,7 @@ export function CoupleHero() {
             variants={fadeUp}
             className="col-start-1 row-start-1 display min-w-0 text-center text-[clamp(1.45rem,7.2vw,3.4rem)] leading-[1.05] text-burgundy"
           >
-            {groom.name}
+            {bride.name}
           </Reveal>
 
           <Reveal
@@ -103,15 +103,15 @@ export function CoupleHero() {
             delay={0.1}
             className="col-start-3 row-start-1 display min-w-0 text-center text-[clamp(1.45rem,7.2vw,3.4rem)] leading-[1.05] text-burgundy"
           >
-            {bride.name}
+            {groom.name}
           </Reveal>
 
           <Reveal delay={0.16} className="col-start-1 row-start-2 mt-4">
-            <Lineage person={groom} />
+            <Lineage person={bride} />
           </Reveal>
 
           <Reveal delay={0.22} className="col-start-3 row-start-2 mt-4">
-            <Lineage person={bride} />
+            <Lineage person={groom} />
           </Reveal>
         </div>
 

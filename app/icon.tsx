@@ -28,11 +28,11 @@ export default async function Icon() {
           border: "2px solid #b08d57",
         }}
       >
-        A
+        S
         <span style={{ fontSize: 26, color: "#cdb083", margin: "0 1px" }}>
           &
         </span>
-        S
+        A
       </div>
     ),
     {

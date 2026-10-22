@@ -19,7 +19,7 @@ export function shareMessage(): string {
   const cities = venueList.map((venue) => venue.city).join(" & ");
 
   return [
-    `${groom.name} & ${bride.name} are getting married.`,
+    `${bride.name} & ${groom.name} are getting married.`,
     "",
     `${dates.display} · ${cities}`,
     "",

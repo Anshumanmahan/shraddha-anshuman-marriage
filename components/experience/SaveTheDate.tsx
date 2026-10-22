@@ -54,11 +54,11 @@ export function SaveTheDate() {
 
         <Reveal delay={0.26} variants={fadeUp}>
           <p className="display mt-8 text-[clamp(1.5rem,6.4vw,2.6rem)] text-gold-pale/95">
-            {weddingConfig.groom.name}
+            {weddingConfig.bride.name}
             <span className="mx-2 align-middle text-[0.6em] italic text-gold-soft sm:mx-3">
               &amp;
             </span>
-            {weddingConfig.bride.name}
+            {weddingConfig.groom.name}
           </p>
         </Reveal>
 
