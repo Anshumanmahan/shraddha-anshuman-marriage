@@ -1,0 +1,577 @@
+@import "tailwindcss";
+
+/* ==================================================================
+   DESIGN SYSTEM — Anshuman & Shraddha
+   A fixed, single-mode palette. A wedding invitation has one face.
+   ================================================================== */
+
+@theme {
+  /* --- Paper ------------------------------------------------------ */
+  --color-ivory: #f8f3e9;
+  --color-parchment: #f0e7d6;
+  --color-sand: #e4d8c1;
+  --color-beige: #d8c9ac;
+
+  /* --- Antique gold (never bright yellow) -------------------------- */
+  --color-gold: #b08d57;
+  --color-gold-soft: #cdb083;
+  --color-gold-pale: #e3d2b0;
+  --color-gold-deep: #8a6c3e;
+
+  /* --- Reds -------------------------------------------------------- */
+  --color-maroon: #7b2338;
+  --color-burgundy: #55172a;
+  --color-wine: #3a0f1d;
+  --color-oxblood: #290a14;
+
+  /* --- Ink --------------------------------------------------------- */
+  --color-ink: #2b211b;
+  --color-ink-soft: #6c5c4e;
+  --color-ink-faint: #9a8a79;
+
+  /* --- Type -------------------------------------------------------- */
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-title: var(--font-marcellus), "Marcellus", Georgia, serif;
+  --font-body: var(--font-jost), "Jost", system-ui, sans-serif;
+  --font-deva: var(--font-tiro), "Tiro Devanagari Hindi", "Noto Serif Devanagari",
+    serif;
+
+  /* --- Motion ------------------------------------------------------ */
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-paper: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ==================================================================
+   BASE
+   ================================================================== */
+
+:root {
+  color-scheme: only light;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+* {
+  min-width: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-synthesis-weight: none;
+  line-height: 1.65;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The invitation is sealed until opened — scroll is held, not hijacked.
+   Both elements need it: iOS Safari happily scrolls the document even
+   when only <body> is clamped. */
+html[data-sealed="true"],
+html[data-sealed="true"] body {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-gold) 30%, transparent);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ==================================================================
+   TEXTURE & ATMOSPHERE
+   ================================================================== */
+
+/* Barely-there handmade-paper grain. Sits above the fill, below content. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.grain-dark::after {
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+}
+
+.vignette::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 120% 90% at 50% 45%,
+    transparent 35%,
+    rgba(41, 10, 20, 0.42) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ivory ground with a whisper of warmth in the corners. */
+.paper {
+  background-color: var(--color-ivory);
+  background-image: radial-gradient(
+      ellipse 90% 70% at 50% 0%,
+      rgba(176, 141, 87, 0.09),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 50% 100%,
+      rgba(123, 35, 56, 0.05),
+      transparent 62%
+    );
+}
+
+.ground-deep {
+  background-color: var(--color-wine);
+  background-image: radial-gradient(
+      ellipse 90% 70% at 50% 30%,
+      rgba(123, 35, 56, 0.55),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 50% 100%,
+      rgba(176, 141, 87, 0.14),
+      transparent 70%
+    );
+}
+
+/* ==================================================================
+   TYPE UTILITIES
+   ================================================================== */
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(0.6rem, 1.6vw, 0.7rem);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+}
+
+.title {
+  font-family: var(--font-title);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.deva {
+  font-family: var(--font-deva);
+  font-weight: 400;
+  line-height: 2.05;
+  /* Devanagari conjuncts need room to breathe. */
+  letter-spacing: 0.005em;
+}
+
+.text-balance-tight {
+  text-wrap: balance;
+}
+
+/* ==================================================================
+   ORNAMENTAL PARTS
+   ================================================================== */
+
+/* A hairline that fades out at both ends — the workhorse divider. */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--color-gold) 65%, transparent) 22%,
+    var(--color-gold) 50%,
+    color-mix(in srgb, var(--color-gold) 65%, transparent) 78%,
+    transparent
+  );
+}
+
+.gold-rule-dark {
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--color-gold-soft) 45%, transparent) 22%,
+    var(--color-gold-soft) 50%,
+    color-mix(in srgb, var(--color-gold-soft) 45%, transparent) 78%,
+    transparent
+  );
+}
+
+/* Double hairline frame, the way good stationery is bordered. */
+.frame-gold {
+  border: 1px solid color-mix(in srgb, var(--color-gold) 46%, transparent);
+  box-shadow: inset 0 0 0 1px transparent,
+    inset 0 0 0 5px color-mix(in srgb, var(--color-gold) 16%, transparent);
+}
+
+.frame-gold-dark {
+  border: 1px solid color-mix(in srgb, var(--color-gold-soft) 34%, transparent);
+  box-shadow: inset 0 0 0 5px
+    color-mix(in srgb, var(--color-gold-soft) 12%, transparent);
+}
+
+/* Muted metallic sheen. Restrained — this is leaf, not paint. */
+.gold-leaf {
+  background: linear-gradient(
+    104deg,
+    #8a6c3e 0%,
+    #b08d57 26%,
+    #e0c894 46%,
+    #b08d57 62%,
+    #8a6c3e 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ==================================================================
+   CONTROLS
+   ================================================================== */
+
+.btn {
+  --btn-fg: var(--color-ivory);
+  --btn-bg: var(--color-burgundy);
+  --btn-bd: var(--color-gold);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  min-height: 3rem;
+  padding: 0.95rem 1.9rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  border: 1px solid color-mix(in srgb, var(--btn-bd) 55%, transparent);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.35s var(--ease-silk), box-shadow 0.35s var(--ease-silk),
+    background-color 0.35s var(--ease-silk), color 0.35s var(--ease-silk),
+    border-color 0.35s var(--ease-silk);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px -12px rgba(58, 15, 29, 0.55);
+  border-color: var(--btn-bd);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.985);
+  transition-duration: 0.09s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-ghost {
+  --btn-fg: var(--color-ink);
+  --btn-bg: transparent;
+}
+
+.btn-ghost:hover {
+  background: color-mix(in srgb, var(--color-gold) 10%, transparent);
+}
+
+.btn-ghost-light {
+  --btn-fg: var(--color-gold-pale);
+  --btn-bg: transparent;
+  --btn-bd: var(--color-gold-soft);
+}
+
+.btn-ghost-light:hover {
+  background: color-mix(in srgb, var(--color-gold-soft) 12%, transparent);
+}
+
+/* --- Form fields --------------------------------------------------- */
+
+.field-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin-bottom: 0.55rem;
+}
+
+.field {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem; /* 16px — stops iOS from zooming on focus */
+  font-weight: 300;
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-ivory) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-gold) 34%, transparent);
+  border-radius: 2px;
+  transition: border-color 0.3s var(--ease-silk),
+    background-color 0.3s var(--ease-silk), box-shadow 0.3s var(--ease-silk);
+}
+
+.field::placeholder {
+  color: var(--color-ink-faint);
+}
+
+.field:hover {
+  border-color: color-mix(in srgb, var(--color-gold) 55%, transparent);
+}
+
+.field:focus {
+  outline: none;
+  background: var(--color-ivory);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-gold) 15%, transparent);
+}
+
+.field[aria-invalid="true"] {
+  border-color: color-mix(in srgb, var(--color-maroon) 70%, transparent);
+}
+
+.field-error {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--color-maroon);
+}
+
+/* Select needs its own chevron once appearance is stripped. */
+select.field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23b08d57' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.6rem;
+}
+
+/* ==================================================================
+   MOTION
+   ================================================================== */
+
+@keyframes seal-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.022);
+  }
+}
+
+@keyframes halo-pulse {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes slow-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hint-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+}
+
+/* A countdown numeral arriving. Driven by a React key rather than by
+   AnimatePresence: one element per cell, so nothing can accumulate
+   while the page sits unopened. */
+@keyframes digit-rise {
+  from {
+    opacity: 0;
+    transform: translateY(-42%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-digit {
+  animation: digit-rise 0.5s var(--ease-silk) both;
+}
+
+/* The light that blooms as the card comes out of the envelope. */
+@keyframes bloom {
+  0% {
+    opacity: 0;
+  }
+  55% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-bloom {
+  animation: bloom 1.8s ease-in-out 1.2s both;
+}
+
+/* Leaves drifting down the page. Two nested elements: the outer falls,
+   the inner sways and turns. Splitting it that way lets the two run on
+   different, unrelated periods, which is what stops a dozen leaves from
+   moving as one. Both are pure transform/opacity, so they stay on the
+   compositor and cost nothing to run. */
+@keyframes leaf-fall {
+  0% {
+    transform: translate3d(0, -14vh, 0);
+    opacity: 0;
+  }
+  7% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--leaf-drift, 4vw), 114vh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes leaf-sway {
+  from {
+    transform: translateX(calc(var(--leaf-sway, 14px) * -1))
+      rotate(var(--leaf-spin-from, -25deg));
+  }
+  to {
+    transform: translateX(var(--leaf-sway, 14px))
+      rotate(var(--leaf-spin-to, 25deg));
+  }
+}
+
+@keyframes equalizer {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-seal-breathe {
+  animation: seal-breathe 4.5s var(--ease-silk) infinite;
+}
+.animate-halo {
+  animation: halo-pulse 5.5s ease-in-out infinite;
+}
+.animate-slow-spin {
+  animation: slow-spin 160s linear infinite;
+}
+.animate-hint {
+  animation: hint-drift 2.8s ease-in-out infinite;
+}
+
+/* 3D staging for the envelope. */
+.stage-3d {
+  perspective: 1600px;
+  perspective-origin: 50% 42%;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* ==================================================================
+   REDUCED MOTION — information stays, movement goes.
+   ================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-seal-breathe,
+  .animate-halo,
+  .animate-slow-spin,
+  .animate-hint {
+    animation: none !important;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==================================================================
+   PRINT — guests do print these.
+   ================================================================== */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}

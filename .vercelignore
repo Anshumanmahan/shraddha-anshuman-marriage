@@ -1,0 +1,13 @@
+# Never needed to build the site.
+node_modules
+.next
+out
+shots
+
+# Original artwork and audio. `npm run assets` turns these into the files
+# in public/assets, and only those are needed at build time.
+Avatars&Logos
+songs
+
+# Dev tooling.
+scripts
