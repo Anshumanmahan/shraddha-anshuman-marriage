@@ -323,7 +323,7 @@ export const weddingConfig = {
         members: [
           /* Nirmala Dixit and Uma Tiwari are named as grandparents on the
              couple's own page, so they are not repeated here. */
-          "Air Marshal Ashutosh Dixit & Smt Archana Dixit",
+          "Air Chief Marshal Ashutosh Dixit & Smt Archana Dixit",
           "Dr Aditya Dixit & Dr Aditi Dixit",
           "Mr. Mridul Tiwari & Smt Gauri Tiwari",
           "Dr. Sadhana Tripathi & Mr. Rahul Tripathi",
