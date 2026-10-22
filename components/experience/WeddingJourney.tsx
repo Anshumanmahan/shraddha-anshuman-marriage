@@ -24,7 +24,7 @@ export function WeddingJourney() {
         <SectionHeading
           eyebrow="Our Celebrations"
           title="The Wedding Journey"
-          lede="Two days in Agra. We would love to have you at both of them."
+          lede="Two days in Agra. We would love to have you on both days."
           className="mx-auto max-w-2xl"
         />
       </div>
