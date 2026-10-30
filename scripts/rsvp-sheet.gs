@@ -1,17 +1,25 @@
 /**
  * rsvp-sheet.gs
  * ------------------------------------------------------------------
- * Receives RSVPs from the marriage invitation (Agra, 20–21 Nov) and
- * appends them to the spreadsheet this script is bound to, with
- * Event = "Marriage" on every row.
+ * Receives RSVPs from BOTH Agra invitations and appends them to the
+ * spreadsheet this script is bound to:
  *
- * A "Summary" tab counts replies and headcount. It is built from
- * formulas, so it updates by itself as replies arrive.
+ *   - the marriage invitation (20 & 21 Nov) → Event = "Marriage"
+ *   - the 21st-only invitation               → Event = "21st Only"
+ *
+ * Each site sends its own `event` value. A reply without one is from
+ * the marriage site (older builds never sent anything else), so it is
+ * labelled "Marriage".
+ *
+ * A "Summary" tab counts replies and headcount per site, and people
+ * expected on each day. It is built from formulas, so it updates by
+ * itself as replies arrive.
  *
  * This file is not part of the website. It is pasted into Google Apps
- * Script. After pasting, run `setup` once from the editor (it writes
- * the header row and builds the Summary tab), then Deploy → New
- * deployment → Web app, Execute as: Me, Who has access: Anyone.
+ * Script. After pasting, run `setup` once from the editor (it labels
+ * any unlabelled rows and rebuilds the Summary tab), then update the
+ * EXISTING deployment — Deploy → Manage deployments → Edit → Version:
+ * New version → Deploy — so the web app URL stays the same.
  * ------------------------------------------------------------------
  */
 
@@ -27,6 +35,7 @@ var HEADERS = [
 
 var EVENT_COL = 7; // column G
 var MARRIAGE_EVENT = 'Marriage';
+var DAY21_EVENT = '21st Only';
 var SUMMARY_NAME = 'Summary';
 
 /** The tab replies go to: the first one that is not the Summary. */
@@ -60,7 +69,7 @@ function doPost(e) {
     ensureHeaders_(sheet);
 
     var d = JSON.parse(e.postData.contents);
-    var event = MARRIAGE_EVENT;
+    var event = d.event === DAY21_EVENT ? DAY21_EVENT : MARRIAGE_EVENT;
 
     sheet.appendRow([
       // A real Date, not the ISO string, so the column sorts and filters.
@@ -108,7 +117,8 @@ function setup() {
   var sheet = responsesSheet_();
   ensureHeaders_(sheet);
 
-  // Any reply that arrived before setup was run is from this site.
+  // Any unlabelled reply came from the marriage site — the 21st-only
+  // site always sends its own label.
   var last = sheet.getLastRow();
   if (last > 1) {
     var range = sheet.getRange(2, EVENT_COL, last - 1, 1);
@@ -153,18 +163,28 @@ function buildSummary_(ss, responsesName) {
     ['RSVP summary — updates automatically', '', '', '', ''],
     ['', '', '', '', ''],
     ['Replies from', 'Total replies', 'Attending', 'Not attending', 'People coming'],
-    row('Marriage — Agra, 20–21 Nov', q(MARRIAGE_EVENT)),
+    row('Marriage site (20 & 21 Nov)', q(MARRIAGE_EVENT)),
+    row('21st-only site', q(DAY21_EVENT)),
+    row('Both sites (total)', null),
+    ['', '', '', '', ''],
+    ['Headcount by day', '', '', '', 'People coming'],
+    ['20 Nov — Lagun, Ring Ceremony, Sangeet', '', '', '', '=E4'],
+    ['21 Nov — Haldi, Barat, Jaimaal', '', '', '', '=E6'],
   ];
 
   summary.getRange(1, 1, rows.length, 5).setValues(rows);
 
   summary.getRange('A1').setFontWeight('bold').setFontSize(13);
   summary.getRange('A3:E3').setFontWeight('bold').setBackground('#f0e4ca');
-  summary.getRange('A4').setFontWeight('bold');
+  summary.getRange('A8:E8').setFontWeight('bold').setBackground('#f0e4ca');
+  summary.getRange('A6:E6').setFontWeight('bold');
+  summary.getRange('A9:A10').setFontWeight('bold');
   summary.setColumnWidth(1, 230);
   summary.setColumnWidths(2, 4, 120);
-  summary.getRange('B3:E4').setHorizontalAlignment('center');
-  summary.getRange('A6').setValue(
-    'People coming = sum of the Guests column for replies marked Yes.'
+  summary.getRange('B3:E10').setHorizontalAlignment('center');
+  summary.getRange('A12').setValue(
+    'People coming = sum of the Guests column for replies marked Yes. ' +
+    'Marriage-site guests are invited on both days, so the 21 Nov ' +
+    'headcount includes them as well as the 21st-only guests.'
   ).setFontStyle('italic').setFontColor('#777777');
 }
