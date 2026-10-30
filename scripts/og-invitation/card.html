@@ -1,0 +1,89 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!--
+  WhatsApp / social preview card — source for
+  public/og/shraddha-anshuman-wedding-invitation.jpg (1200 × 630).
+
+  To regenerate after a change: open this file in Chrome, set the
+  window (or DevTools device mode) to exactly 1200 × 630, capture a
+  full-size screenshot, save it as JPEG (quality ~88, keep it under
+  300 KB — WhatsApp drops larger images), and replace the file in
+  public/og/. Then bump the `?v=` in OG_IMAGE_PATH in app/layout.tsx
+  so WhatsApp fetches the new image.
+
+  Keep every word inside the centre 600px column: WhatsApp's small
+  thumbnail is a centre square crop, and the flowers on the sides are
+  the only thing it is allowed to lose.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Great+Vibes&family=Marcellus&family=Tiro+Devanagari+Hindi&display=block" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{position:relative;background:
+  radial-gradient(ellipse 62% 78% at 50% 48%, #fffdf8 0%, #fbf6ec 46%, #f3e8d4 100%);}
+.frame{position:absolute;inset:24px;border:1.6px solid #c4a26a}
+.frame2{position:absolute;inset:32px;border:0.8px solid rgba(196,162,106,.7)}
+.flora{position:absolute;inset:34px;overflow:hidden}
+.side{position:absolute;top:-34px;height:630px;width:330px}
+.side.left{left:-34px}.side.right{right:-34px;transform:scaleX(-1)}
+.corner{position:absolute;width:64px;height:64px}
+.col{position:absolute;left:300px;width:600px;top:36px;height:558px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.shri{font-family:"Tiro Devanagari Hindi";font-size:21px;color:#a8844f;letter-spacing:.04em}
+.eyebrow{font-family:"Marcellus";font-size:14.5px;letter-spacing:.42em;color:#7a6550;margin-top:14px;padding-left:.42em}
+.name{font-family:"Great Vibes";font-size:104px;line-height:1;
+  background:linear-gradient(180deg,#a37c3e 0%,#8a6530 55%,#b08a4c 100%);-webkit-background-clip:text;color:transparent;
+  padding:0 18px}
+.n1{margin-top:22px}
+.amp{font-family:"Cormorant Garamond";font-style:italic;font-weight:500;font-size:54px;color:#b8955c;line-height:1;margin:-6px 0 6px}
+.invite{font-family:"Cormorant Garamond";font-style:italic;font-weight:500;font-size:23px;color:#6f5b47;margin-top:16px}
+.rule{margin-top:18px}
+.date{font-family:"Marcellus";font-size:21px;letter-spacing:.3em;padding-left:.3em;color:#8a6530;margin-top:16px}
+.place{font-family:"Marcellus";font-size:13.5px;letter-spacing:.36em;padding-left:.36em;color:#7a6550;margin-top:9px}
+</style></head><body>
+<div class="frame"></div><div class="frame2"></div>
+<div class="flora"><svg class="side left" viewBox="0 0 330 630" id="sprigL"></svg>
+<svg class="side right" viewBox="0 0 330 630" id="sprigR"></svg></div>
+<div class="col">
+  <div class="shri">॥ श्री गणेशाय नमः ॥</div>
+  <div class="eyebrow">TOGETHER WITH THEIR FAMILIES</div>
+  <div class="name n1">Shraddha</div>
+  <div class="amp">&amp;</div>
+  <div class="name">Anshuman</div>
+  <div class="invite">joyfully invite you to celebrate their wedding</div>
+  <svg class="rule" width="240" height="14" viewBox="0 0 240 14" fill="none" stroke="#b8955c" stroke-linecap="round">
+    <path d="M6 7 H100" stroke-width=".9" opacity=".8"/><path d="M140 7 H234" stroke-width=".9" opacity=".8"/>
+    <path d="M120 1.5 L125.5 7 L120 12.5 L114.5 7 Z" stroke-width="1"/><circle cx="120" cy="7" r="1.4" fill="#b8955c" stroke="none"/>
+    <circle cx="107" cy="7" r="1.2" fill="#b8955c" stroke="none"/><circle cx="133" cy="7" r="1.2" fill="#b8955c" stroke="none"/>
+  </svg>
+  <div class="date">20 &amp; 21 NOVEMBER 2026</div>
+  <div class="place">HOTEL GRAND MERCURE · AGRA</div>
+</div>
+<script>
+// Botanical sprig: one sweeping stem, leaves, a few open blossoms and buds — gold line, faint champagne fill.
+const G="#bf9c62";
+function blossom(cx,cy,r,rot,petals=6){let s=`<g transform="translate(${cx} ${cy}) rotate(${rot})">`;
+  for(let i=0;i<petals;i++){const a=360/petals*i;
+    s+=`<path transform="rotate(${a})" d="M0 0 C${r*.42} ${-r*.35} ${r*.38} ${-r*.92} 0 ${-r} C${-r*.38} ${-r*.92} ${-r*.42} ${-r*.35} 0 0 Z" fill="rgba(214,190,146,.22)" stroke="${G}" stroke-width=".9"/>`;
+    s+=`<path transform="rotate(${a})" d="M0 ${-r*.18} L0 ${-r*.62}" stroke="${G}" stroke-width=".5" opacity=".6"/>`;}
+  s+=`<circle r="${r*.2}" fill="rgba(214,190,146,.5)" stroke="${G}" stroke-width=".8"/>`;
+  for(let i=0;i<8;i++){const a=i*45*Math.PI/180;s+=`<circle cx="${Math.cos(a)*r*.3}" cy="${Math.sin(a)*r*.3}" r=".9" fill="${G}"/>`;}
+  return s+'</g>';}
+function leaf(x,y,len,rot){return `<g transform="translate(${x} ${y}) rotate(${rot})"><path d="M0 0 C${len*.3} ${-len*.28} ${len*.75} ${-len*.24} ${len} 0 C${len*.72} ${len*.2} ${len*.3} ${len*.22} 0 0 Z" fill="rgba(214,190,146,.16)" stroke="${G}" stroke-width=".85"/><path d="M${len*.06} 0 Q${len*.5} ${-len*.03} ${len*.9} 0" stroke="${G}" stroke-width=".5" fill="none" opacity=".7"/></g>`;}
+function bud(x,y,r,rot){return `<g transform="translate(${x} ${y}) rotate(${rot})"><path d="M0 0 C${r*.7} ${-r*.4} ${r*.5} ${-r*1.3} 0 ${-r*1.6} C${-r*.5} ${-r*1.3} ${-r*.7} ${-r*.4} 0 0 Z" fill="rgba(214,190,146,.25)" stroke="${G}" stroke-width=".85"/><path d="M0 0 L0 ${r*.9}" stroke="${G}" stroke-width=".8"/></g>`;}
+function dots(x,y){return `<circle cx="${x}" cy="${y}" r="1.6" fill="${G}" opacity=".7"/><circle cx="${x+7}" cy="${y-5}" r="1.1" fill="${G}" opacity=".55"/><circle cx="${x+3}" cy="${y+8}" r=".9" fill="${G}" opacity=".45"/>`;}
+let s=`<g fill="none" stroke-linecap="round" stroke-linejoin="round">`;
+// main stem sweeping from bottom-left corner up the side
+s+=`<path d="M30 640 C120 560 150 470 120 380 C95 300 150 220 210 170 C250 136 262 100 250 62" stroke="${G}" stroke-width="1.3"/>`;
+s+=`<path d="M120 380 C170 360 210 330 236 290" stroke="${G}" stroke-width="1"/>`;
+s+=`<path d="M128 470 C180 470 230 450 262 420" stroke="${G}" stroke-width="1"/>`;
+s+=`<path d="M150 230 C110 215 80 190 70 160" stroke="${G}" stroke-width="1"/>`;
+// leaves
+s+=leaf(96,560,62,-40)+leaf(140,520,52,-110)+leaf(126,430,58,-160)+leaf(150,345,50,-35)+leaf(110,300,54,-140)+leaf(182,200,48,-10)+leaf(205,320,40,-70)+leaf(222,440,42,-20)+leaf(234,128,40,-120);
+// blossoms
+s+=blossom(244,286,30,10)+blossom(268,416,24,-15)+blossom(246,84,22,0)+blossom(68,154,20,20)+blossom(132,560,24,5,5);
+s+=bud(196,170,14,35)+bud(232,372,11,60)+bud(92,232,12,-50)+bud(186,486,12,40);
+s+=dots(276,248)+dots(206,118)+dots(52,200)+dots(282,470);
+s+='</g>';
+document.getElementById('sprigL').innerHTML=s;document.getElementById('sprigR').innerHTML=s;
+</script></body></html>
