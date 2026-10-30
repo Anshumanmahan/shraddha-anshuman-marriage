@@ -320,8 +320,8 @@ export const weddingConfig = {
         label: "Shraddha\u2019s Family",
         members: [
           "Mr. Akhil & Mrs Madhvi Dwivedi",
-          "Mrs Shakuntala & Ram Niwas Pandey",
-          "Mrs Beena & Avdhesh Chaturvedi",
+          "Mrs Shakuntala & Mr. Ram Niwas Pandey",
+          "Mrs Beena & Mr. Avdhesh Chaturvedi",
           "Mrs Meenakshi & Mr. Krishan Bajpayee",
           "Mrs Archana & Mr. Mohit Pathak",
           "Mrs Alpana & Dr. Munesh Trivedi",
