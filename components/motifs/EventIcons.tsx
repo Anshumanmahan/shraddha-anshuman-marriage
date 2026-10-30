@@ -20,6 +20,21 @@ const svgProps = {
   focusable: "false" as const,
 };
 
+/** Lagun — a kalash: the pot, a crown of mango leaves and a coconut. */
+function Lagun({ className }: IconProps) {
+  return (
+    <svg {...svgProps} className={cn("h-full w-full", className)}>
+      <path d="M15 30 C15 23 19 21 24 21 C29 21 33 23 33 30 C33 37 29 41 24 41 C19 41 15 37 15 30 Z" />
+      <path d="M16 29 C20 31 28 31 32 29" opacity="0.5" />
+      <path d="M19 41 L18 44 H30 L29 41" opacity="0.7" />
+      <path d="M18 19.5 H30" />
+      <path d="M24 18 C20 14.5 15 14.5 10.5 16 C15 18.5 20 18.5 24 18 Z" opacity="0.8" />
+      <path d="M24 18 C28 14.5 33 14.5 37.5 16 C33 18.5 28 18.5 24 18 Z" opacity="0.8" />
+      <path d="M24 4.5 C27.5 4.5 29.5 8 29.5 11 C29.5 14 27 16.5 24 16.5 C21 16.5 18.5 14 18.5 11 C18.5 8 20.5 4.5 24 4.5 Z" />
+    </svg>
+  );
+}
+
 /** Two rings, joined. */
 function Rings({ className }: IconProps) {
   return (
@@ -125,6 +140,7 @@ function Reception({ className }: IconProps) {
 }
 
 const ICONS: Record<EventIcon, (p: IconProps) => React.JSX.Element> = {
+  lagun: Lagun,
   rings: Rings,
   sangeet: Sangeet,
   dinner: Dinner,

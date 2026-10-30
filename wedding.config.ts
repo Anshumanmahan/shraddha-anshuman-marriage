@@ -15,6 +15,7 @@
 import { generatedAssets, generatedTracks } from "@/data/generated-assets";
 
 export type EventIcon =
+  | "lagun"
   | "rings"
   | "sangeet"
   | "dinner"
@@ -133,7 +134,7 @@ export const weddingConfig = {
     parents: "Anil & Renu Dwivedi",
     parentsPrefix: "D/O",
     grandparents: [
-      { prefix: "GD/O", names: "Late Brij Kishore & Vimala Dwivedi" },
+      { prefix: "GD/O", names: "Late Brij Kishore & Vimla Dwivedi" },
       { prefix: "GD/O", names: "Mahesh Dixit & Geeta Dixit" },
     ],
     avatar: {
@@ -180,9 +181,10 @@ export const weddingConfig = {
 
   /**
    * Countdown target. Configurable — the UI never hardcodes a date.
-   * Points at the first celebration (20 November 2026, after lunch).
+   * Points at the first celebration — the Lagun Ceremony, 20 November
+   * 2026 at 2:00 PM.
    */
-  countdownTarget: "2026-11-20T12:00:00",
+  countdownTarget: "2026-11-20T14:00:00",
   /** IANA offset for the wedding's timezone, so the countdown is correct abroad. */
   countdownTimeZoneOffset: "+05:30",
 
@@ -220,17 +222,25 @@ export const weddingConfig = {
       venueId: "agra",
       events: [
         {
-          id: "engagement",
-          title: "Engagement & Ring Ceremony",
-          time: "After Lunch",
+          id: "lagun",
+          title: "Lagun Ceremony",
+          time: "After Lunch · 2:00 PM",
+          icon: "lagun",
+          description: null,
+          image: null,
+        },
+        {
+          id: "ring-ceremony",
+          title: "Ring Ceremony",
+          time: "After High Tea · 5:30 PM",
           icon: "rings",
           description: null,
           image: null,
         },
         {
           id: "sangeet",
-          title: "Sangeet",
-          time: "",
+          title: "Sangeet Night",
+          time: "8:00 PM",
           icon: "sangeet",
           description: null,
           image: null,
@@ -238,7 +248,7 @@ export const weddingConfig = {
         {
           id: "dinner",
           title: "Dinner",
-          time: "",
+          time: "8:00 PM",
           icon: "dinner",
           description: null,
           image: null,
@@ -274,7 +284,7 @@ export const weddingConfig = {
         {
           id: "jaimaal",
           title: "Jaimaal",
-          time: "9:00 PM",
+          time: "8:00 PM",
           icon: "jaimaal",
           description: null,
           image: null,
@@ -309,12 +319,14 @@ export const weddingConfig = {
         who: "bride",
         label: "Shraddha\u2019s Family",
         members: [
-          "Mr. Akhil Dwivedi & Smt Madhvi Dwivedi",
-          "Smt Meenakshi Bajpayee & Mr. Krishan Bajpayee",
-          "Smt Archana Pathak & Mr. Mohit Pathak",
-          "Smt Alpana Trivedi & Dr. Munesh Trivedi",
-          "Dr. Shreya Dwivedi & Mr. Lalit Chaturvedi",
-          "Anushka, Yatharth, Tanmay, Atharv, Shreyas, Om, Yashi, Saumya, Aadhya, Vedansh & All Dwivedi Family",
+          "Mr. Akhil & Mrs Madhvi Dwivedi",
+          "Mrs Shakuntala & Ram Niwas Pandey",
+          "Mrs Beena & Avdhesh Chaturvedi",
+          "Mrs Meenakshi & Mr. Krishan Bajpayee",
+          "Mrs Archana & Mr. Mohit Pathak",
+          "Mrs Alpana & Dr. Munesh Trivedi",
+          "Mrs Shreya & Mr. Lalit Chaturvedi",
+          "Anushka, Yashi, Nandini, Saumya, Aadhya, Harsh, Shreyas, Om, Yatharth, Parth, Atharv, Vedansh & Family",
         ],
       },
       {
@@ -323,12 +335,12 @@ export const weddingConfig = {
         members: [
           /* Nirmala Dixit and Uma Tiwari are named as grandparents on the
              couple's own page, so they are not repeated here. */
-          "Air Chief Marshal Ashutosh Dixit & Smt Archana Dixit",
-          "Dr Aditya Dixit & Dr Aditi Dixit",
-          "Mr. Mridul Tiwari & Smt Gauri Tiwari",
-          "Dr. Sadhana Tripathi & Mr. Rahul Tripathi",
-          "Akshay Dixit & Gauri Dixit",
-          "Aditi Dixit & Sqn Ldr Utkarsh Saxena",
+          "Air Chief Marshal Ashutosh & Mrs Archana Dixit",
+          "Dr Aditya & Dr Aditi Dixit",
+          "Mr. Mridul & Mrs Gauri Tiwari",
+          "Dr. Sadhana & Mr. Rahul Tripathi",
+          "Akshay & Gauri Dixit",
+          "Aditi & Sqn Ldr Utkarsh Saxena",
           "Aastha, Anagha, Anvesha, Shivangi, Sneha, Sara, Siddharth, Zaroon, Aadyant & All Dixit and Tiwari Family",
         ],
       },

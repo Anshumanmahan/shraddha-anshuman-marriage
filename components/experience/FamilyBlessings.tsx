@@ -112,7 +112,7 @@ function FamilyHalf({ side, index }: { side: FamilySide; index: number }) {
 }
 
 /**
- * A couple ("Mr. A & Smt B") wraps only at the ampersand, so neither
+ * A couple ("Mr. A & Mrs B") wraps only at the ampersand, so neither
  * person's name is ever split across two lines. A list of names — the
  * cousins' line, with commas — wraps normally.
  */
