@@ -51,7 +51,7 @@ const { site } = weddingConfig;
 /* Bump `v` whenever the image changes: WhatsApp caches images by URL. */
 /* ------------------------------------------------------------------ */
 
-const OG_IMAGE_PATH = "/og/shraddha-anshuman-wedding-invitation.jpg?v=1";
+const OG_IMAGE_PATH = "/og/shraddha-anshuman-wedding-invitation.jpg?v=2";
 
 const SHARE_TITLE = "Shraddha & Anshuman | Wedding Invitation 💍";
 const SHARE_DESCRIPTION =
